@@ -44,10 +44,9 @@ namespace task_16th_2
             fp.FileTypeFilter.Add(".jpeg");
             fp.FileTypeFilter.Add(".jpg");
             fp.FileTypeFilter.Add(".png");
-           // StorageFolder sf = await fp.PickSingleFolderAsync();
             var file = await fp.PickSingleFolderAsync();
             f1 = await file.GetFilesAsync();
-          if(file!=null)
+           if(file!=null)
             {
                 StorageFile sf = f1[0];
                 foreach(StorageFile a in f1 )
@@ -56,14 +55,7 @@ namespace task_16th_2
                 BitmapImage b = new BitmapImage();
                 b.SetSource(i);
                 flip.Items.Add(b);
-              //  ImageProperties img = await sf.Properties.GetImagePropertiesAsync();
-                //name.Text = img.DateTaken.ToString();
-               //camera.Text = img.CameraModel;
-               //Location l = new Location();
-                //l.Latitude = img.Latitude.GetValueOrDefault();
-                //l.Longitude = img.Longitude.GetValueOrDefault();
-                //map.SetView(l, 15);
-               //MapLayer.SetPosition(pp, l);
+            
                 }
 
             }
@@ -73,18 +65,18 @@ namespace task_16th_2
        private async void flip_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             map.Visibility = Visibility.Visible;
-           // StorageFile sf = f1[0];
-                foreach(StorageFile a in f1 )
-                {
-                    ImageProperties img = await a.Properties.GetImagePropertiesAsync();
-                    name.Text = img.DateTaken.ToString();
-                    camera.Text = img.CameraModel;
-                    Location l = new Location();
-                    l.Latitude = img.Latitude.GetValueOrDefault();
-                    l.Longitude = img.Longitude.GetValueOrDefault();
-                    map.SetView(l, 15);
-                    MapLayer.SetPosition(pp, l);
-                }
+            StorageFile sf = f1[0];
+            StorageFile a = f1[flip.SelectedIndex];
+            ImageProperties img = await a.Properties.GetImagePropertiesAsync();
+            name.Text = img.DateTaken.ToString();
+            camera.Text = img.CameraModel;
+            time.Text = img.Title;
+            Location l = new Location();
+            l.Latitude = img.Latitude.GetValueOrDefault();
+            l.Longitude = img.Longitude.GetValueOrDefault();
+            map.SetView(l, 15);
+            MapLayer.SetPosition(pp, l);
+        
 
         }
     }
