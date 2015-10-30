@@ -70,7 +70,7 @@ namespace task_16th_2
             ImageProperties img = await a.Properties.GetImagePropertiesAsync();
             name.Text = img.DateTaken.ToString();
             camera.Text = img.CameraModel;
-            time.Text = img.Title;
+            time.Text = a.DisplayName;
             Location l = new Location();
             l.Latitude = img.Latitude.GetValueOrDefault();
             l.Longitude = img.Longitude.GetValueOrDefault();
